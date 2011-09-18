@@ -4,6 +4,7 @@
  */
 package wspkg;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -50,4 +51,19 @@ public class UtilTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+    
+    @Test
+    public void testParseURL() throws Exception {
+        System.out.println("parseURL");
+        String urlstr = "http://www.google.com.br/movies?hl=pt-BR&near=maring%C3%A1";
+        //String expResult = "";
+        ArrayList result = Util.parseURL(urlstr);
+        System.out.println(result);
+        //assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    
+    
 }
