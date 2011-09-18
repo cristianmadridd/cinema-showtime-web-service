@@ -66,9 +66,9 @@ public class Util {
      * @param urlstr
      * @return 
      */
-    public static ArrayList parseURL(String urlstr){
+    public static ArrayList<HashMap> parseURL(String urlstr){
         
-        ArrayList result = new ArrayList();
+        ArrayList<HashMap> result = new ArrayList<HashMap>();
         Document doc = null;
         try {
             doc = Jsoup.connect(urlstr).get();
@@ -97,6 +97,8 @@ public class Util {
          *                      <div class=times>
          *                          HORARIOS
          *                  <REPETE para outros FILMES>
+         *              <div class=show_right>
+         *                  <REPETE para outros FILMES>
          *      <REPETE para outros CINEMAS>
          * 
          * 
@@ -120,25 +122,26 @@ public class Util {
             String info = desc.getElementsByClass("info").get(0).text();
             
             ArrayList movie_list = new ArrayList();
-            for (Element movie: nested.get(1).child(0).children()){ //showtimes -> show_left
-                
-                //if (!movie.className().equals("movie")) continue; //pula o primeiro q é o desc
-                String movie_name = movie.child(0).text();
-                String movie_info = movie.child(1).text();
-                
-                ArrayList movie_times = new ArrayList();
-                Element times = movie.child(2);
-                for (Element time: times.children()){
-                    movie_times.add(time.text());
+            
+            for (int i = 0; i<2; i++){ //show_left e show_right
+                for (Element movie: nested.get(1).child(i).children()){ //showtimes -> show_left/right
+                     //if (!movie.className().equals("movie")) continue; //pula o primeiro q é o desc
+                    String movie_name = movie.child(0).text();
+                    String movie_info = movie.child(1).text();
+
+                    ArrayList movie_times = new ArrayList();
+                    Element times = movie.child(2);
+                    for (Element time: times.children()){
+                        movie_times.add(time.text());
+                    }
+
+                    HashMap<String, Object> movie_infos = new HashMap<String, Object>();
+                    movie_infos.put("title", movie_name);
+                    movie_infos.put("info", movie_info);
+                    movie_infos.put("times", movie_times);
+
+                    movie_list.add(movie_infos);
                 }
-                
-                HashMap<String, Object> movie_infos = new HashMap<String, Object>();
-                movie_infos.put("title", movie_name);
-                movie_infos.put("info", movie_info);
-                movie_infos.put("times", movie_times);
-                
-                movie_list.add(movie_infos);
-                
             }
             
             theater_infos.put("name", name);
@@ -146,8 +149,6 @@ public class Util {
             theater_infos.put("movie list", movie_list);
             
             result.add(theater_infos);
-            //[...] por aí vai, tem q ir pegando as div s aninhadas e recuperando as informações
-            
             
         }
         return result;
