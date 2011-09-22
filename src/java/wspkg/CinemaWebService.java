@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,25 +36,11 @@ public class CinemaWebService {
      * Operação de serviço web
      */
     @WebMethod(operationName = "buscarPorHorario")
-    public ArrayList buscarPorHorario(@WebParam(name = "cidade") String cidade, @WebParam(name = "horario") String horario) {
-        //TODO write your implementation code here:
-        
-        //String codfonte = Util.recuperarCodigoFonte(getURL(cidade));
-        
-        return Util.parseURL(getURL(cidade));
-        
-        
-        //TESTE geração do resultado
-//        ArrayList<ArrayList> resultado = new ArrayList<ArrayList>(); //lista de cinemas
-//        ArrayList<HashMap> cinema1 = new ArrayList<HashMap>(); //lista de filmes, 
-//        //cada filme contém varias informações indexadas em uma HashSet
-//        HashMap<String,String> filme2 = new HashMap<String, String>();
-//        filme2.put("titulo", "planeta dos macacos");
-//        cinema1.add(filme2);
-//        resultado.add(cinema1);
-//        return "teste";
-        
-        //return null;
+    public ArrayList buscarPorHorario(@WebParam(name = "cidade") String cidade, @WebParam(name = "horario") String horario) throws ParseException {
+        //este é nosso web service
+       
+        return Util.parseURL(getURL(cidade), horario);
+  
     }
     
     private String getURL(String cidade){

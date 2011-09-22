@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +27,8 @@ import org.jsoup.select.Elements;
  * @author Helio
  */
 public class Util {
+    private static SimpleDateFormat dateformatHoras = new SimpleDateFormat("dd/MM/yy HH:mm");
+    private static SimpleDateFormat dateFormatDia = new SimpleDateFormat("dd/MM/yy");
     
     public static String recuperarCodigoFonte(String urlstr){
         
@@ -66,7 +71,10 @@ public class Util {
      * @param urlstr
      * @return 
      */
-    public static ArrayList<HashMap> parseURL(String urlstr){
+    public static ArrayList<HashMap> parseURL(String urlstr, String horario) throws ParseException{
+        
+        //dateformat = new SimpleDateFormat("HH:mm");
+        Date horarioData = parseTime(horario);
         
         ArrayList<HashMap> result = new ArrayList<HashMap>();
         Document doc = null;
@@ -88,6 +96,7 @@ public class Util {
             }
 
 
+            
             /*
              * Estrutura do HTML:
              * <div class=movie_results>
@@ -143,7 +152,12 @@ public class Util {
                         ArrayList movie_times = new ArrayList();
                         Element times = movie.child(2);
                         for (Element time: times.children()){
-                            movie_times.add(time.text());
+                            
+                            Date hour = parseTime(time.text());
+                            if (hour.after(horarioData)){ //verifica se é depois de hora dada
+                                movie_times.add(hour);
+                            }
+                            
                         }
 
                         HashMap<String, Object> movie_infos = new HashMap<String, Object>();
@@ -168,5 +182,24 @@ public class Util {
         return result;
         
     }
+
+    static Date parseTime(String text) throws ParseException {
+        
+        //System.out.println(text);
+        
+        char ch;
+        int i;
+        for (i=0, ch = text.charAt(i); 
+                ch < 48 || ch > 57; 
+                i++, ch = text.charAt(i)){} //percorre string até achar um numero
+        String hour = text.substring(i,text.length()-1);
+        
+        //System.out.println(hour);
+        
+        return dateformatHoras.parse(dateFormatDia.format(new Date())+" "+hour);
+        
+    }
+    
+    
     
 }
