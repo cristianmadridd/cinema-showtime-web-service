@@ -38,8 +38,9 @@ public class CinemaWebService {
     public ArrayList buscarPorHorario(@WebParam(name = "cidade") String cidade, @WebParam(name = "horario") String horario) {
         //TODO write your implementation code here:
         
-        String codfonte = Util.recuperarCodigoFonte(getURL(cidade));
+        //String codfonte = Util.recuperarCodigoFonte(getURL(cidade));
         
+        return Util.parseURL(getURL(cidade));
         
         
         //TESTE geração do resultado
@@ -52,10 +53,10 @@ public class CinemaWebService {
 //        resultado.add(cinema1);
 //        return "teste";
         
-        return null;
+        //return null;
     }
     
     private String getURL(String cidade){
-        return "http://www.google.com.br/movies?hl=pt-BR&near="+cidade;
+        return "http://www.google.com.br/movies?hl=pt-BR&near="+cidade.replaceAll(" ", "+");
     }
 }

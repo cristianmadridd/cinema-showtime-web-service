@@ -56,7 +56,7 @@ public class UtilTest {
     @Test
     public void testParseURL() throws Exception {
         System.out.println("parseURL");
-        String urlstr = "http://www.google.com.br/movies?hl=pt-BR&near=maring%C3%A1";
+        String urlstr = "http://www.google.com.br/movies?hl=pt-BR&near=sao+paulo";
         //String expResult = "";
         ArrayList<HashMap> result = Util.parseURL(urlstr);
         System.out.println(result);
