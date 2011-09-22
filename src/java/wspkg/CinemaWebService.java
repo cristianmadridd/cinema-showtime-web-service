@@ -4,17 +4,9 @@
  */
 package wspkg;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -26,12 +18,6 @@ import javax.jws.WebParam;
 @WebService(serviceName = "CinemaWebService")
 public class CinemaWebService {
 
-    /** This is a sample web service operation */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-
     /**
      * Operação de serviço web
      */
@@ -39,11 +25,16 @@ public class CinemaWebService {
     public ArrayList buscarPorHorario(@WebParam(name = "cidade") String cidade, @WebParam(name = "horario") String horario) throws ParseException {
         //este é nosso web service
        
-        return Util.parseURL(getURL(cidade), horario);
+        //XMLAdapt
+        ArrayList retorno = Util.parseURL(getURL(cidade), horario);
+        //Adapters.XCollection xmlresult =  Adapters.xmlizeNestedCollection(retorno);
+        //return xmlresult;
+        
+        return retorno;
   
     }
     
     private String getURL(String cidade){
-        return "http://www.google.com.br/movies?hl=pt-BR&near="+cidade.replaceAll(" ", "+");
+        return "http://www.google.com.br/movies?hl=pt-BR&near="+cidade;
     }
 }

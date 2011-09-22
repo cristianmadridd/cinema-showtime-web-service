@@ -6,10 +6,10 @@
     </service>
   </services>
   <clients>
-    <client name="CinemaWebService">
+    <client name="CinemaWebService_1">
       <wsdl-url>http://localhost:8080/cinema-webservice/CinemaWebService?WSDL</wsdl-url>
       <local-wsdl-file>localhost_8080/cinema-webservice/CinemaWebService.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">wsclient</package-name>
+      <package-name forceReplace="true">wsclient1</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -34,7 +34,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>wsclient</wsimport-option-value>
+          <wsimport-option-value>wsclient1</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>

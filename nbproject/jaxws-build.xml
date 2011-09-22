@@ -44,21 +44,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-CinemaWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/CinemaWebService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CinemaWebService" destdir="${build.generated.dir}/jax-wsCache/CinemaWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/CinemaWebService/wsdl/localhost_8080/cinema-webservice/CinemaWebService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/cinema-webservice/CinemaWebService?WSDL" xnocompile="true" xendorsed="true" package="wsclient">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/CinemaWebService/wsdl/localhost_8080/cinema-webservice/CinemaWebService.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/CinemaWebService"/>
+    <target name="wsimport-client-CinemaWebService_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/CinemaWebService_1"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/CinemaWebService_1" destdir="${build.generated.dir}/jax-wsCache/CinemaWebService_1" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/CinemaWebService_1/wsdl/localhost_8080/cinema-webservice/CinemaWebService.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8080/cinema-webservice/CinemaWebService?WSDL" xnocompile="true" xendorsed="true" package="wsclient1">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/CinemaWebService_1/wsdl/localhost_8080/cinema-webservice/CinemaWebService.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/CinemaWebService_1"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/CinemaWebService">
+            <fileset dir="${build.generated.dir}/jax-wsCache/CinemaWebService_1">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-CinemaWebService" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/wsclient"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/CinemaWebService"/>
+    <target name="wsimport-client-clean-CinemaWebService_1" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/wsclient1"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/CinemaWebService_1"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-CinemaWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-CinemaWebService_1"/>
 </project>

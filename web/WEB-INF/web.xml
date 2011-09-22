@@ -4,9 +4,25 @@
         <servlet-name>CinemaWSServlet</servlet-name>
         <servlet-class>wspkg.CinemaWSServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CinemaServlet</servlet-name>
+        <servlet-class>wspkg.CinemaServlet</servlet-class>
+        <init-param>
+            <param-name>cidade</param-name>
+            <param-value/>
+        </init-param>
+        <init-param>
+            <param-name>horario</param-name>
+            <param-value/>
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CinemaWSServlet</servlet-name>
         <url-pattern>/CinemaWSServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CinemaServlet</servlet-name>
+        <url-pattern>/CinemaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

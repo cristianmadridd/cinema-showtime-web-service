@@ -58,7 +58,7 @@ public class UtilTest {
         System.out.println("parseURL");
         String urlstr = "http://www.google.com.br/movies?hl=pt-BR&near=sao+paulo";
         //String expResult = "";
-        ArrayList<HashMap> result = Util.parseURL(urlstr, "17:00");
+        ArrayList<HashMap> result = Util.parseURL(urlstr, "20:00");
         System.out.println(result);
         System.out.println("nº de cinemas = "+result.size());
         for (HashMap cinema: result){
