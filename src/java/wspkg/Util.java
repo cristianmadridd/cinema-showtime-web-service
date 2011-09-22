@@ -188,11 +188,16 @@ public class Util {
         //System.out.println(text);
         
         char ch;
-        int i;
+        int i, j;
         for (i=0, ch = text.charAt(i); 
                 ch < 48 || ch > 57; 
                 i++, ch = text.charAt(i)){} //percorre string até achar um numero
-        String hour = text.substring(i,text.length()-1);
+        for (j=text.length()-1, ch = text.charAt(i); 
+                ch < 48 || ch > 57; 
+                i--, ch = text.charAt(i)){} //percorre string até achar um numero
+        
+        
+        String hour = text.substring(i,j+1);
         
         //System.out.println(hour);
         
