@@ -1,0 +1,1 @@
+Este Web Service consiste em recuperar informações sobre filmes em cartaz de acordo com a cidade e o horário fornecidos.
